@@ -1,1 +1,3 @@
 https://stackoverflow.com/questions/43704758/how-to-idiomatically-convert-between-u32-and-usize
+https://users.rust-lang.org/t/how-to-add-a-trait-value-into-hashmap/6542/3
+Dynamic cloning: https://stackoverflow.com/questions/69890183/how-can-i-clone-a-vecboxdyn-trait
