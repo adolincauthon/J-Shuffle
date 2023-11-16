@@ -57,9 +57,9 @@ mod default_values_test {
 
     #[test]
     fn get_range_of_values() {
-        let zero_to_100 = RangedValues::<u32>::new(0, 100);
+        let zero_to_100 = Box::new(RangedValues::<u32>::new(0, 100)) as Box<dyn Values>;
         let mut schema = HashMap::new();
-        schema.insert("value", &zero_to_100);
+        schema.insert("value", zero_to_100);
         let mut objects = Vec::<Value>::new();
         for _ in 0..100 {
             objects.push(create_json_from_schema(&schema));
