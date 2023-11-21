@@ -6,19 +6,48 @@
   "properties": {
     "firstName": {
       "type": "string",
-      "description": "The person's first name."
-			en
-    },
-
-    "lastName": {
-      "type": "string",
-
-      "description": "The person's last name."
+      "description": "The person's first name.",
+      "enum": ["Adam", "John", "Jacob"]
     },
     "age": {
-      "description": "Age in years which must be equal to or greater than zero.",
       "type": "integer",
-      "minimum": 0
+      "description": "Age is but an int",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "skills": {
+      "type": "array",
+      "minimum": 0,
+      "maximum": 5,
+      "items": {
+        "type": "string",
+        "enum": ["Java", "Sales", "Talking", "Drawing", "Eating"]
+      }
+    },
+    "partner": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "The person's first name.",
+          "enum": ["Adam", "John", "Jacob"]
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age is but an int",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "skills": {
+          "type": "array",
+          "minimum": 0,
+          "maximum": 5,
+          "items": {
+            "type": "string",
+            "enum": ["Java", "Sales", "Talking", "Drawing", "Eating"]
+          }
+        }
+      }
     }
   }
 }
