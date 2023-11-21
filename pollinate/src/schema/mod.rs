@@ -1,4 +1,3 @@
-use serde::Deserialize;
 use serde_json::*;
 use std::collections::HashMap;
 
@@ -72,7 +71,9 @@ fn populate_schema<'a>(properties: &Map<String, Value>) -> HashMap<String, Box<d
 
 ///generate a template to create random values based on JSON Schema
 // TODO: OsStrings for filepath
-fn generate_template_from_schema<'a>(schema_path: &str) -> HashMap<String, Box<dyn Values + 'a>> {
+pub fn generate_template_from_schema<'a>(
+    schema_path: &str,
+) -> HashMap<String, Box<dyn Values + 'a>> {
     let schema_string =
         std::fs::read_to_string(schema_path).expect("Should have been able to read the file");
     let parsed_schema: Map<String, Value> = serde_json::from_str(&schema_string).unwrap();
@@ -85,15 +86,4 @@ fn generate_template_from_schema<'a>(schema_path: &str) -> HashMap<String, Box<d
     );
     //temp return value for
     enumerated_schema
-}
-
-#[test]
-fn test_template() {
-    use crate::json_utils::{create_json_vec_from_schema, dump_json_array};
-    let schema = generate_template_from_schema(
-        "/home/adam/repos/J-Shuffle/pollinate/test_data/person_schema.json",
-    );
-    let json = create_json_vec_from_schema(&schema, 32);
-    _ = dump_json_array(&json, "temp.json");
-    println!("{:?}", json);
 }
