@@ -1,5 +1,10 @@
 use clap::Parser;
-use pollinate::json_utils::{create_json_from_schema, dump_json, dump_json_array, dump_value};
+use pollinate::{
+    json_utils::{
+        create_json_from_schema, create_json_vec_from_schema, dump_json_array, dump_value,
+    },
+    schema::generate_template_from_schema,
+};
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -18,9 +23,6 @@ struct Args {
 }
 
 fn main() {
-    use pollinate::{
-        json_utils::create_json_vec_from_schema, schema::generate_template_from_schema,
-    };
     let args = Args::parse();
     let count = u32::from(args.count);
     let schema = generate_template_from_schema(args.input_schema.as_str());

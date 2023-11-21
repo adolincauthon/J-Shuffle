@@ -5,25 +5,25 @@ use crate::default_values::{ArrayValues, DiscreteValues, ObjectValues, RangedVal
 
 fn parse_integer(details: &Value) -> Box<dyn Values> {
     if let Some(x) = details.get("enum") {
-        return Box::new(DiscreteValues::new(&x.as_array().unwrap())) as Box<dyn Values>;
+        return Box::new(DiscreteValues::new(x.as_array().unwrap())) as Box<dyn Values>;
     }
     if let Some(min) = details.get("minimum").unwrap().as_i64() {
         if let Some(max) = details.get("maximum").unwrap().as_i64() {
             return Box::new(RangedValues::new(min, max)) as Box<dyn Values>;
         }
-        return Box::new(RangedValues::new(min, i64::MAX)) as Box<dyn Values>;
+        Box::new(RangedValues::new(min, i64::MAX)) as Box<dyn Values>
     } else {
         let min = i64::MIN;
         if let Some(max) = details.get("maximum").unwrap().as_i64() {
             return Box::new(RangedValues::new(min, max)) as Box<dyn Values>;
         }
-        return Box::new(RangedValues::new(min, i64::MAX)) as Box<dyn Values>;
+        Box::new(RangedValues::new(min, i64::MAX)) as Box<dyn Values>
     }
 }
 
 fn parse_string(details: &Value) -> Box<dyn Values> {
     let enum_values = details.get("enum").unwrap().as_array().unwrap();
-    return Box::new(DiscreteValues::new(&enum_values)) as Box<dyn Values>;
+    return Box::new(DiscreteValues::new(enum_values)) as Box<dyn Values>;
 }
 
 fn parse_array(details: &Value) -> Box<dyn Values> {
