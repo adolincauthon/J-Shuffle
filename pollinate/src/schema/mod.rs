@@ -23,7 +23,7 @@ fn parse_integer(details: &Value) -> Box<dyn Values> {
 
 fn parse_string(details: &Value) -> Box<dyn Values> {
     let enum_values = details.get("enum").unwrap().as_array().unwrap();
-    return Box::new(DiscreteValues::new(enum_values)) as Box<dyn Values>;
+    Box::new(DiscreteValues::new(enum_values)) as Box<dyn Values>
 }
 
 fn parse_array(details: &Value) -> Box<dyn Values> {
@@ -33,8 +33,8 @@ fn parse_array(details: &Value) -> Box<dyn Values> {
         if let Some(n) = details.get("minimum") {
             min = n.as_u64().unwrap() as u32;
         }
-        let types = parse_type(&details.get("items").unwrap()).unwrap();
-        return Box::new(ArrayValues::new(min, max, types)) as Box<dyn Values>;
+        let types = parse_type(details.get("items").unwrap()).unwrap();
+        Box::new(ArrayValues::new(min, max, types)) as Box<dyn Values>
     } else {
         panic!("Arrays must have max value")
     }
@@ -78,7 +78,7 @@ pub fn generate_template_from_schema<'a>(
         std::fs::read_to_string(schema_path).expect("Should have been able to read the file");
     let parsed_schema: Map<String, Value> = serde_json::from_str(&schema_string).unwrap();
     let enumerated_schema = populate_schema(
-        &parsed_schema
+        parsed_schema
             .get("properties")
             .unwrap()
             .as_object()

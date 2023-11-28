@@ -24,7 +24,7 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let count = u32::from(args.count);
+    let count = args.count;
     let schema = generate_template_from_schema(args.input_schema.as_str());
     if count == 1 {
         let json = create_json_from_schema(&schema);
