@@ -7,7 +7,7 @@ Pollinate is a CLI program for automatically creating JSON files populated by us
 ### Usage
 
 ```
-pollinate [OPTIONS] --input-schema <INPUT_SCHEMA> --output<OUTPUT>
+pollinate-json [OPTIONS] --input-schema <INPUT_SCHEMA> --output<OUTPUT>
 - Options:
 - -i, --input-schema <INPUT_SCHEMA>    Path to input schema
 - -o, --output <OUTPUT>  Path to output schema
@@ -94,6 +94,16 @@ One of:
 }
 
 ```
+
+### Build
+
+To build the program you must have rust installed. Change into the `src` directly and run the following command:
+
+```
+cargo build --release
+```
+
+This should create a file under `target/release` that contains `pollinate`. Run the program according to the instructions listed above.
 
 ### Sources
 
