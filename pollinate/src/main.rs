@@ -1,3 +1,20 @@
+//! # Pollinate
+//!
+//! `pollinate` is a Rust crate for parsing and generating random values based on JSON schemas. It provides utilities for defining default values, parsing schema details, and generating templates for creating randomized data conforming to specified JSON schemas.
+//!
+//! ## Features
+//!
+//! - **Schema Parsing:** The crate supports parsing JSON schema details, including handling integer, string, array, and object types.
+//! - **Random Data Generation:** Using the parsed schema, `pollinate` can generate templates containing random values for each specified field.
+//! - **Extensibility:** Custom value types can be easily added by implementing the `Values` trait.
+//! Usage: pollinate [OPTIONS] --input-schema <INPUT_SCHEMA> --output-schema <OUTPUT_SCHEMA>
+//! Options:
+//! -i, --input-schema <INPUT_SCHEMA>    Path to input schema
+//! -o, --output-schema <OUTPUT_SCHEMA>  Path to output schema
+//! -c, --count <COUNT>                  Number of objects to create [default: 1]
+//! -h, --help                           Print help
+//! -V, --version                        Print version
+
 use clap::Parser;
 use pollinate::{
     json_utils::{
