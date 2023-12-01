@@ -16,6 +16,10 @@ pollinate-json [OPTIONS] --input-schema <INPUT_SCHEMA> --output<OUTPUT>
 
 Pollinate takes the path to an input schema that is loosely based on the JSON Schema spec. The top level of the schema have a "type" key set to "object". It must also have a "properties" key which is set to an object containing the schema. See details for each data type below. Pollinate also takes a path to the output file, and a count determining the number of JSON objects to store in the JSON array.
 
+I tested this program by using different schemas to produce JSON files. I iteratively went through each type of schema item I am supporting and ensured they were able to be parsed. There still needs to be some work done to gracefully handle errors. Currently it panicks in most scenarios, but this is primarily to be used as a CLI application and not a crate. In that scenario panicking if the schema is unparsable is the correct behavior.
+
+I would also like to expand this to support the entire JSON Schema specification. It is based on this specification but does not handle all use cases. It is a pretty simplified version that I will find use for but would need to be improved upon for others to do so.
+
 ### Schema requirements
 
 ##### string
